@@ -1,0 +1,35 @@
+# Core Dependencies
+fastapi==0.95.2
+uvicorn==0.22.0
+
+# Database
+asyncpg==0.27.0
+redis==4.5.5
+sqlalchemy==2.0.15
+
+# Machine Learning
+torch==2.0.0
+transformers==4.28.1
+sentence-transformers==2.2.2
+
+# Data Processing
+pandas==2.0.1
+numpy==1.24.3
+scikit-learn==1.2.2
+
+# NLP
+spacy==3.5.3
+en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.5.0/en_core_web_sm-3.5.0-py3-none-any.whl
+
+# Monitoring
+prometheus-client==0.16.0
+grafana-dashboard==1.0.0
+
+# Security
+python-jose==3.3.0
+passlib==1.7.4
+bcrypt==4.0.1
+
+# Utilities
+python-dotenv==1.0.0
+loguru==0.7.0

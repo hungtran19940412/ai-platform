@@ -1,0 +1,12 @@
+# user specific
+.env
+.aider*
+
+sample_project
+src/langwatch-test
+src/local_cache
+
+# environment variables
+.env
+predictive-model-data-categorization
+recommendation-system-and-ai-automation

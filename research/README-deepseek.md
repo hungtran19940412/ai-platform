@@ -1,12 +1,12 @@
 # AI-Powered Recommendation and Insights Platform
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)  
-[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)  
-[![FastAPI](https://img.shields.io/badge/FastAPI-modern-green)](https://fastapi.tiangolo.com/)  
-[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)  
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-modern-green)](https://fastapi.tiangolo.com/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=flat&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
 
-A comprehensive AI platform that combines **personalized recommendations**, **financial insights**, and **customer support** capabilities. This platform leverages state-of-the-art machine learning and natural language processing (NLP) techniques to deliver real-time, context-aware, and highly personalized services.
+A comprehensive AI platform that combines **personalized recommendations** with **financial insights** and **customer support** capabilities. This platform leverages state-of-the-art machine learning and natural language processing (NLP) techniques to deliver real-time, context-aware, and highly personalized services.
 
 ---
 
@@ -16,25 +16,22 @@ A comprehensive AI platform that combines **personalized recommendations**, **fi
 - **Hybrid Approach**: Combines collaborative filtering, content-based filtering, and deep learning for accurate recommendations.
 - **Real-Time Updates**: Continuously adapts to user behavior using streaming data pipelines.
 - **Personalization**: Tailors recommendations based on user preferences, historical data, and contextual information.
-- **A/B Testing**: Automated A/B testing for optimizing recommendation strategies.
 
 ### Financial Insights
 - **Real-Time Analysis**: Provides insights into stock prices, market trends, and company performance.
 - **Document Summarization**: Automatically summarizes financial reports, earnings calls, and news articles.
 - **Portfolio Recommendations**: Offers personalized investment suggestions based on user profiles and market conditions.
-- **Portfolio Optimization**: Provides strategies for optimizing investment portfolios.
 
 ### Customer Support
 - **Automated Responses**: Generates context-aware responses to customer queries using custom-trained NLP models.
 - **FAQ Handling**: Efficiently addresses frequently asked questions with high accuracy.
 - **Ticket Categorization**: Automatically categorizes and prioritizes support tickets for faster resolution.
-- **Multi-Language Support**: Provides services in multiple languages for global users.
 
 ### Core Capabilities
 - **Real-Time Data Processing**: Handles large volumes of data with low latency.
 - **Context Awareness**: Maintains context across interactions for more meaningful responses.
+- **Multi-Language Support**: Provides services in multiple languages for global users.
 - **Enterprise-Grade Security**: Ensures data security with OAuth2/JWT authentication and encryption.
-- **Monitoring & Alerting**: Tracks system and model performance with Prometheus and Grafana.
 
 ---
 
@@ -46,7 +43,6 @@ A comprehensive AI platform that combines **personalized recommendations**, **fi
 - **Machine Learning**: PyTorch, HuggingFace Transformers
 - **Data Processing**: Pandas, NumPy, SpaCy
 - **Database**: PostgreSQL, Redis
-- **Streaming**: Kafka/AWS Kinesis
 - **Monitoring**: Prometheus, Grafana
 - **Containerization**: Docker
 - **Orchestration**: Kubernetes
@@ -102,7 +98,7 @@ ai-platform/
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/hungtran19940412/ai-platform.git
+   git clone https://github.com/username/ai-platform.git
    cd ai-platform
    ```
 
@@ -136,7 +132,6 @@ ai-platform/
 - **PostgreSQL**: Primary data storage for user interactions and metadata.
 - **Redis**: Caching layer for frequent recommendations and responses.
 - **Kafka/AWS Kinesis**: Stream processing for real-time updates.
-- **Feature Store**: Versioned feature storage for model training and inference.
 
 ### Application Layer
 - **Recommendation Engine**: Core ML models for generating personalized recommendations.
@@ -148,12 +143,6 @@ ai-platform/
 - **Docker**: Containerized deployment for scalability.
 - **Kubernetes**: Orchestration for managing containers.
 - **AWS**: Cloud platform for hosting and scaling the platform.
-
-### Security Layer
-- **OAuth2/JWT Authentication**: Secure user authentication.
-- **Rate Limiting**: Prevents abuse of API endpoints.
-- **Data Encryption**: Ensures data security in transit and at rest.
-- **GDPR Compliance**: Adheres to data protection regulations.
 
 ---
 
