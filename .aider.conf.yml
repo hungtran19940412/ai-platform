@@ -1,0 +1,7 @@
+architect: true
+model: 'openai/deepseek-chat'
+editor-model: 'openai/deepseek-chat'
+openai-api-key: 'sk-73377644e7e84befa1944854a704409b'
+openai-api-base: 'https://api.deepseek.com'
+yes-always: true
+show-model-warnings: false

@@ -1,86 +1,54 @@
 # Application Flow
 
-## AI Platform Workflow Diagram
+## Overview
+This document outlines the workflow of the AI-Powered Recommendation and Insights Platform. The flowchart below illustrates the key processes, decision points, and interactions between components.
 
 ```mermaid
-graph TD
-    A[User Interaction] --> B[API Gateway]
-    B --> C{Service Type}
+flowchart TD
+    A[User Request] --> B[API Gateway]
+    B --> C{Request Type}
     C -->|Recommendation| D[Recommendation Engine]
-    C -->|Financial| E[Financial Insights]
-    C -->|Support| F[Customer Support]
+    C -->|Financial Insight| E[Financial Insights]
+    C -->|Support Query| F[Customer Support]
     
-    D --> G[Data Collection]
-    D --> H[Model Prediction]
-    D --> I[Personalization]
-    D --> J[A/B Testing]
+    D --> G[Data Validation]
+    E --> G
+    F --> G
     
-    E --> K[Real-Time Analysis]
-    E --> L[Document Summarization]
-    E --> M[Portfolio Recommendations]
-    E --> N[Portfolio Optimization]
+    G --> H[Model Inference]
+    H --> I[Response Generation]
+    I --> J[User Response]
     
-    F --> O[Automated Responses]
-    F --> P[FAQ Handling]
-    F --> Q[Ticket Categorization]
-    F --> R[Multi-Language Support]
+    subgraph Monitoring
+        K[Performance Tracking]
+        L[Logging]
+        M[Alerting]
+    end
     
-    G --> S[Data Validation]
-    H --> T[Model Versioning]
-    I --> U[User Profiling]
-    J --> V[Performance Monitoring]
-    
-    K --> W[Market Data]
-    L --> X[Document Processing]
-    M --> Y[Investment Analysis]
-    N --> Z[Optimization Algorithms]
-    
-    O --> AA[NLP Models]
-    P --> AB[Knowledge Base]
-    Q --> AC[Ticket Management]
-    R --> AD[Language Models]
-    
-    S --> AE[Data Storage]
-    T --> AF[Model Registry]
-    U --> AG[User Database]
-    V --> AH[Monitoring Dashboard]
-    
-    W --> AI[Data Streams]
-    X --> AJ[Text Processing]
-    Y --> AK[Financial Models]
-    Z --> AL[Optimization Engine]
-    
-    AA --> AM[Response Generation]
-    AB --> AN[FAQ Database]
-    AC --> AO[Ticket System]
-    AD --> AP[Translation Service]
+    H --> K
+    I --> L
+    K --> M
 ```
 
-## Flow Explanation
+## Key Stages
 
-### Recommendation Engine
-1. **Data Collection**: Gathers user interaction data from various sources
-2. **Model Prediction**: Uses hybrid models (collaborative + content-based filtering) for recommendations
-3. **Personalization**: Tailors recommendations based on user profiles and preferences
-4. **A/B Testing**: Continuously optimizes recommendation strategies
+### 1. User Request
+- The user sends a request to the platform via the API (e.g., for recommendations, financial insights, or customer support)
 
-### Financial Insights
-1. **Real-Time Analysis**: Processes market data streams for up-to-date insights
-2. **Document Summarization**: Analyzes financial reports and news articles
-3. **Portfolio Recommendations**: Provides personalized investment suggestions
-4. **Portfolio Optimization**: Offers strategies for maximizing returns
+### 2. API Gateway
+- The request is routed to the appropriate service (recommendation engine, financial insights, or customer support)
+- Rate limiting and authentication are enforced
 
-### Customer Support
-1. **Automated Responses**: Generates context-aware responses using NLP models
-2. **FAQ Handling**: Efficiently addresses common questions from knowledge base
-3. **Ticket Categorization**: Automatically routes and prioritizes support tickets
-4. **Multi-Language Support**: Provides services in multiple languages
+### 3. Data Validation
+- The input data is validated to ensure it meets the required format and constraints
 
-## Technology References
-- **Data Processing**: Kafka/AWS Kinesis, Pandas, NumPy
-- **Machine Learning**: PyTorch, HuggingFace Transformers
-- **API Framework**: FastAPI
-- **Monitoring**: Prometheus, Grafana
-- **Database**: PostgreSQL, Redis
+### 4. Model Inference
+- The validated data is processed by the appropriate model
+- The model generates a response based on the input
 
-For more details on the technology stack, refer to [Tech Stack Documentation](Tech-stack.md)
+### 5. Response Generation
+- The response is formatted and returned to the user
+
+### 6. Monitoring
+- The system continuously monitors performance and logs metrics for analysis
+- Alerts are triggered for any anomalies or performance degradation

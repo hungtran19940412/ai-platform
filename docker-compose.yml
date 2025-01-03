@@ -3,39 +3,82 @@ version: '3.8'
 services:
   api:
     build: .
-    container_name: ai-platform-api
     ports:
-      - "8000:8000"
+      - "8001:8000"  # Changed from 8000 to 8001
     volumes:
       - .:/app
     environment:
-      - API_HOST=0.0.0.0
-      - API_PORT=8000
-      - API_DEBUG=True
+      - POSTGRES_HOST=postgres
+      - REDIS_HOST=redis
+      - KAFKA_BROKER=kafka:9092
     depends_on:
       - postgres
       - redis
+      - kafka
+    networks:
+      - ai-platform
 
   postgres:
-    image: postgres:13
-    container_name: ai-platform-postgres
+    image: postgres:14
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_DB: ai_platform
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"  # Changed from 5432 to 5433
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ai-platform
 
   redis:
-    image: redis:6
-    container_name: ai-platform-redis
+    image: redis:7
     ports:
-      - "6379:6379"
+      - "6380:6379"  # Changed from 6379 to 6380
     volumes:
       - redis_data:/data
+    networks:
+      - ai-platform
+
+  kafka:
+    image: bitnami/kafka:3.4
+    ports:
+      - "9093:9092"  # Changed from 9092 to 9093
+    environment:
+      KAFKA_CFG_NODE_ID: 0
+      KAFKA_CFG_PROCESS_ROLES: controller,broker
+      KAFKA_CFG_LISTENERS: PLAINTEXT://:9092
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 0@kafka:9093
+    volumes:
+      - kafka_data:/bitnami/kafka
+    networks:
+      - ai-platform
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9091:9090"  # Changed from 9090 to 9091
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - ai-platform
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"  # Changed from 3000 to 3001
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - ai-platform
 
 volumes:
   postgres_data:
   redis_data:
+  kafka_data:
+  grafana_data:
+
+networks:
+  ai-platform:
+    driver: bridge

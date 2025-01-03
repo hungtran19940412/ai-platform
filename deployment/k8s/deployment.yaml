@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-platform
+  labels:
+    app: ai-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ai-platform
+  template:
+    metadata:
+      labels:
+        app: ai-platform
+    spec:
+      containers:
+      - name: api
+        image: ai-platform:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: POSTGRES_HOST
+          value: "postgres"
+        - name: REDIS_HOST
+          value: "redis"
+        - name: KAFKA_BROKER
+          value: "kafka:9092"
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-platform
+spec:
+  selector:
+    app: ai-platform
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: LoadBalancer

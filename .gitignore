@@ -1,12 +1,61 @@
-# user specific
-.env
-.aider*
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-sample_project
-src/langwatch-test
-src/local_cache
-
-# environment variables
+# Environments
 .env
-predictive-model-data-categorization
-recommendation-system-and-ai-automation
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data
+data/raw/
+data/processed/
+data/financial_datasets/
+data/support_datasets/
+
+# Models
+models/recommendation/
+models/financial_insights/
+models/customer_support/
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker-compose.override.yml
+
+# System
+.DS_Store
+Thumbs.db

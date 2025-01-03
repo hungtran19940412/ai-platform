@@ -1,6 +1,7 @@
-# Project File Structure
+# Project File Structure and Component Interaction
 
-## Project Directory Structure
+## Project File Structure
+
 ```
 ai-platform/
 ├── data/
@@ -10,10 +11,10 @@ ai-platform/
 │   ├── support_datasets/        # Customer support datasets
 │   └── validation/              # Data validation and quality checks
 ├── models/
-│   ├── recommendation/          # Recommendation models
+│   ├── recommendation/          # Recommendation models and configurations
 │   ├── financial_insights/      # Financial insights models
 │   ├── customer_support/        # Customer support models
-│   ├── tokenizer/               # Tokenizer configuration
+│   ├── tokenizer/               # Tokenizer configurations
 │   └── experiments/             # Experiment tracking (MLflow/W&B)
 ├── src/
 │   ├── api/                     # FastAPI implementation
@@ -35,57 +36,42 @@ ai-platform/
 
 ## Key Files and Their Roles
 
-### Data Processing
-- `data/raw/`: Raw input data from various sources
-- `data/processed/`: Cleaned and processed data ready for modeling
-- `data/financial_datasets/`: Financial data for insights generation
-- `data/support_datasets/`: Customer support interaction data
+### Data Directory
+- **data/raw/**: Contains raw data files collected from various sources
+- **data/processed/**: Stores cleaned and preprocessed data ready for model training
+- **data/financial_datasets/**: Financial data for insights generation
+- **data/support_datasets/**: Customer support conversation data
+- **data/validation/**: Data validation scripts and quality checks
 
-### Model Management
-- `models/recommendation/`: Hybrid recommendation models
-- `models/financial_insights/`: Financial analysis models
-- `models/customer_support/`: NLP models for customer support
-- `models/experiments/`: Experiment tracking and results
+### Models Directory
+- **models/recommendation/**: Trained recommendation models and configurations
+- **models/financial_insights/**: Financial analysis models and weights
+- **models/customer_support/**: NLP models for customer support
+- **models/experiments/**: Experiment tracking and model versioning
 
-### API Layer
-- `src/api/`: FastAPI implementation and endpoints
-- `src/recommendation_engine/`: Recommendation logic and services
-- `src/financial_insights/`: Financial analysis services
-- `src/customer_support/`: Customer support services
+### Source Code Directory
+- **src/api/**: FastAPI implementation including routes and middleware
+- **src/recommendation_engine/**: Core recommendation logic and algorithms
+- **src/financial_insights/**: Financial analysis and insights generation
+- **src/customer_support/**: NLP processing and response generation
+- **src/monitoring/**: Performance tracking and logging
+- **src/security/**: Authentication and authorization implementations
 
-### Infrastructure
-- `config/`: Configuration files for different environments
-- `deployment/`: Docker and Kubernetes deployment configurations
-- `monitoring/`: Prometheus and Grafana configurations
-
-### Development
-- `tests/`: Unit and integration tests
-- `notebooks/`: Jupyter notebooks for exploratory analysis
-- `scripts/`: Utility scripts for development and deployment
-
-## File Connections and Interactions
+## Component Interaction
 
 ### Data Flow
-1. **Data Ingestion**
-   - Raw data → Data validation → Preprocessing → Feature engineering
-   - Financial data → Analysis → Insights generation
-   - Support data → Processing → Model training
+1. **Data Ingestion**: Raw data is collected and stored in `data/raw/`
+2. **Preprocessing**: Data is cleaned and processed, stored in `data/processed/`
+3. **Model Training**: Processed data is used to train models in `models/`
+4. **Inference**: The API (`src/api/`) uses trained models to generate predictions
 
-2. **Model Training**
-   - Processed data → Model training → Model evaluation → Deployment
-   - Feedback data → Model retraining → Versioning
+### API Interaction
+1. **User Request**: Sent to the API, which routes it to the appropriate service
+2. **Data Validation**: Input data is validated using scripts in `data/validation/`
+3. **Model Processing**: Request is processed by the appropriate model
+4. **Response Generation**: Formatted response is returned to the user
 
-3. **API Flow**
-   - Request → Authentication → Service routing → Response
-   - Recommendation requests → Engine processing → Personalized results
-   - Financial queries → Analysis → Insights generation
-   - Support queries → NLP processing → Automated responses
-
-4. **Monitoring**
-   - System metrics → Collection → Visualization → Alerting
-   - Model performance → Tracking → Reporting → Optimization
-
-## Cross-References
-- For detailed application flow, refer to [Application Flow Documentation](App-flow.md)
-- For technology stack details, refer to [Tech Stack Documentation](Tech-stack.md)
-- For comprehensive project requirements, refer to [Project Requirements Document](PRD.md)
+### Monitoring and Logging
+1. **Performance Tracking**: Metrics collected by `src/monitoring/`
+2. **Alerting**: Anomalies trigger alerts through monitoring system
+3. **Logging**: All interactions are logged for analysis and debugging
